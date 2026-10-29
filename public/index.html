@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CraveHub | Restaurant Management</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="nav">
+  <a class="brand" href="#home">
+    <span class="logo">C</span>
+    <span>CRAVE<span>HUB</span></span>
+  </a>
+
+  <nav>
+  <a href="#home">Home</a>
+  <a href="#menu">Menu</a>
+  <a href="#about">About</a>
+  <a href="#orders" onclick="showMyOrders()">My Orders</a>
+</nav>
+
+  <button class="cartBtn" onclick="openCart()">
+    🛒 <b id="cartCount">0</b>
+  </button>
+</header>
+
+<main>
+
+<section id="home" class="hero">
+  <div class="heroText">
+
+    <div class="pill">🔥 Fresh • Fast • Delicious</div>
+
+    <h1>
+      Good food.<br>
+      <em>Great mood.</em>
+    </h1>
+
+    <p>
+      Restaurant Management System with online ordering,
+      live menu, billing and inventory control.
+    </p>
+
+    <div class="heroActions">
+      <a class="primary" href="#menu">Explore Menu →</a>
+    </div>
+
+    <div class="miniStats">
+      <div>
+        <strong>8+</strong>
+        <span>Menu Items</span>
+      </div>
+
+      <div>
+        <strong>100%</strong>
+        <span>Fresh Taste</span>
+      </div>
+
+      <div>
+        <strong>24/7</strong>
+        <span>Order Ready</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="heroVisual">
+
+    <div class="foodCard">
+      <div class="foodEmoji">🍔</div>
+
+      <div>
+        <small>Chef's Special</small>
+        <h3>Classic Burger</h3>
+        <b>₹180</b>
+      </div>
+    </div>
+
+    <div class="floating f1">⭐ 4.9 Rating</div>
+    <div class="floating f2">⚡ Fast Service</div>
+
+  </div>
+</section>
+
+
+<section class="categories">
+
+  <button class="active" onclick="filterMenu('All',this)">
+    All
+  </button>
+
+  <button onclick="filterMenu('Burgers',this)">
+    🍔 Burgers
+  </button>
+
+  <button onclick="filterMenu('Pizza',this)">
+    🍕 Pizza
+  </button>
+
+  <button onclick="filterMenu('Pasta',this)">
+    🍝 Pasta
+  </button>
+
+  <button onclick="filterMenu('Sides',this)">
+    🍟 Sides
+  </button>
+
+  <button onclick="filterMenu('Beverages',this)">
+    🥤 Drinks
+  </button>
+
+  <button onclick="filterMenu('Desserts',this)">
+    🍨 Desserts
+  </button>
+
+</section>
+
+
+<section id="menu" class="section">
+
+  <div class="sectionHead">
+
+    <div>
+      <span class="eyebrow">OUR MENU</span>
+      <h2>Crave-worthy favourites</h2>
+    </div>
+
+    <input
+      id="search"
+      class="search"
+      placeholder="Search food..."
+      oninput="renderMenu()"
+    >
+
+  </div>
+
+  <div id="menuGrid" class="menuGrid"></div>
+
+</section>
+
+
+<section id="about" class="feature">
+
+  <div>
+
+    <span class="eyebrow">WHY CRAVEHUB</span>
+
+    <h2>
+      More than a restaurant.<br>
+      A complete ordering experience.
+    </h2>
+
+    <p>
+      Customers can browse the menu, search their favourite food,
+      add items to the cart and place orders easily.
+    </p>
+
+  </div>
+
+
+  <div class="featureCards">
+
+    <div>
+      ⚡
+      <b>Fast Ordering</b>
+      <small>Simple cart & checkout</small>
+    </div>
+
+    <div>
+      🍔
+      <b>Live Menu</b>
+      <small>Fresh menu items</small>
+    </div>
+
+    <div>
+      📦
+      <b>Stock Control</b>
+      <small>Automatic stock deduction</small>
+    </div>
+
+    <div>
+      🧾
+      <b>Digital Billing</b>
+      <small>Order total instantly calculated</small>
+    </div>
+
+  </div>
+
+</section>
+<section id="orders" class="section">
+  <div class="sectionHead">
+    <div>
+      <span class="eyebrow">ORDER HISTORY</span>
+      <h2>My Orders</h2>
+    </div>
+  </div>
+
+  <div id="myOrders">
+    <p>Loading your orders...</p>
+  </div>
+</section>
+</main>
+
+
+<footer>
+
+  <div class="brand">
+    <span class="logo">C</span>
+    <span>CRAVEHUB</span>
+  </div>
+
+  <p>
+    Restaurant Management System • BCA Project • MySQL + Node.js + JavaScript
+  </p>
+
+</footer>
+
+
+<div id="toast" class="toast"></div>
+
+
+<div id="cartModal" class="modal">
+
+  <div class="modalBox">
+
+    <button class="close" onclick="closeCart()">×</button>
+
+    <h2>Your Cart</h2>
+
+    <div id="cartItems"></div>
+
+    <div class="cartTotal">
+      <span>Total</span>
+      <strong id="cartTotal">₹0</strong>
+    </div>
+<div class="couponBox">
+  <input id="couponCode" placeholder="Enter coupon code">
+  <button onclick="applyCoupon()">Apply</button>
+  <div id="couponMsg"></div>
+</div>
+    <div class="checkout">
+
+      <input
+        id="customerName"
+        placeholder="Your name"
+      >
+
+      <input
+        id="phone"
+        placeholder="Phone number"
+      >
+
+      <button
+        class="primary full"
+        onclick="placeOrder()"
+      >
+        Place Order →
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script src="/app.js"></script>
+
+</body>
+</html>
